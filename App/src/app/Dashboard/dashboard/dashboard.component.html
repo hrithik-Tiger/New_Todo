@@ -1,0 +1,63 @@
+<div class="container-fluid">
+   <div class="p">
+   
+    <div class="custom-card">
+        <div class="h2">Todo List Application</div>
+        <div class="todos">
+            <form #AddForm="ngForm" (ngSubmit)="addTodo(AddForm)" >
+            <!-- <form (submit)="addTodo()"> -->
+                <!-- <input class="form-control" 
+
+                    type="text"
+                    name="inputTodo"
+                    placeholder="Enter todo..."
+                    class="todo-input"
+                    [(ngModel)]="inputTodo"
+                  
+                    required
+                /> -->
+                <!-- <span class="text-danger"
+                *ngIf="(inputTodo.touched || registerForm.submitted) && name.errors?.required">
+                Name is required
+            </span> -->
+           
+           
+            <div class="form-group">
+                <label for="inputTodo">Task</label>
+                
+                <input type="text" id="inputTodo" class="form-control" ngModel
+                name="inputTodo" #inputTodo="ngModel" required>
+            
+              </div>
+              <div *ngIf="inputTodo.invalid && (inputTodo.dirty || inputTodo.touched)" class="alert" style="color: red;">
+                Todo is required
+              </div> 
+           
+           
+           
+           
+           
+           
+           
+            <br>
+            <button   type="submit" style="width: 100%;" value="Add Todo" [disabled]="!AddForm.valid"  class="btn btn-success">Add</button>
+               <br>
+
+
+
+
+
+            </form>
+            <div class="card" >
+              <br>
+                <div *ngFor="let todo of todos; let i = index;" class="todo {{ (todo.completed ? 'done' : '') }}">
+                    <div class="id">{{ i }}</div>
+                    <div class="content" (click)="toggleDone(i)">{{ todo.content }}</div>
+                   
+                    <button type="button" class="btn btn-danger" (click)="deleteTodo(i)">Remove</button>
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+</div>
